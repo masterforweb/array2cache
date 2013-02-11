@@ -1,6 +1,6 @@
 <?php
 	
-	function arr2_save($array, $name, $dir = '') {
+	function arr2_fsave($array, $name, $dir = '') {
 		
 		$cfile = ar2c_fname($name, $dir);
 		$code = '<?php $array='.var_export($array, True).'?>';
@@ -9,7 +9,7 @@
 
 	}
 
-	function arr2_array($name, $dir) {
+	function arr2_fload($name, $dir) {
 		
 		$cfile = arr2_fname($name, $dir = '');
 		
