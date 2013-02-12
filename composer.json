@@ -1,7 +1,16 @@
 {
-    "name":"array2cache",
-    "version":"1.0.0",
-    "require":{
-        "php":">=5.3.0"
+    "name": "akdelf/array2cache",
+    "description": "php array save to file",
+    "keywords": ["cache","php","array"],
+    "homepage": "http://github.com/akdelf/array2cache",
+    "license": "Zlib",
+    "authors": [
+        {
+            "name": "AK Delf",
+            "homepage": ""
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
     }
 }
