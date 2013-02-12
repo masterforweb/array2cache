@@ -1,22 +1,25 @@
 <?php
-	
+		
 	function arr2_fsave($array, $name, $dir = '') {
 		
-		$cfile = ar2c_fname($name, $dir);
-		$code = arr2_code($array);
+		$cfile = arr2_fname($name, $dir);
+		$code = arr2_code($array, $name);
 		
-		return file_put_contents($cfile, $code);	
+		echo $cfile;
+
+		if (file_put_contents($cfile, $code) > 0)
+			return $cfile; // return name file	
 
 	}
 
 	
-	function arr2_fload($name, $dir) {
+	function arr2_fload($name, $dir = '') {
 		
-		$cfile = arr2_fname($name, $dir = '');
+		$cfile = arr2_fname($name, $dir);
 		
 		if (file_exists($cfile)){
 			include($cfile);
-			return $array;
+			return $$name;
 		}
 
 		return null;
@@ -25,19 +28,26 @@
 	
 	function arr2_fname($name, $dir = ''){
 		
-		if ($dir == '' and defined('CACHE_DIR'))
-			$dir = CACHE_DIR;
+		if ($dir == '' and defined('CACHEDIR'))
+			$dir = CACHEDIR.'arrays/';
 
-		return $dir.'arrays/'.sha1($name).'.php';
+		if (!is_dir($dir)){
+			if (!mkdir($dir, 0777, True))
+				return False;
+		}		
+
+		return $dir.$name.'.php';
+
 	}
 
 	
-	function arr2_code($array, $tag = True){
+	function arr2_code($array, $name, $tag = True){
 		
-		$code  = '$array='.var_export($array, True);
+		$code  = '$'.$name.'='.var_export($array, True);
 		
 		if ($tag)
 			$code = '<?php '.$code.'?>';
 		
 		return $code;	
+
 	}
