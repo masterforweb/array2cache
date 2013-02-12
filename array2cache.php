@@ -5,15 +5,12 @@
 		$cfile = arr2_fname($name, $dir);
 		$code = arr2_code($array, $name);
 		
-		echo $cfile;
-
-		if (file_put_contents($cfile, $code) > 0)
-			return $cfile; // return name file	
-
+		return file_put_contents($cfile, $code);
+	
 	}
 
 	
-	function arr2_fload($name, $dir = '') {
+	function arr2_fload($name, $dir = ''){
 		
 		$cfile = arr2_fname($name, $dir);
 		
@@ -32,7 +29,7 @@
 			$dir = CACHEDIR.'arrays/';
 
 		if (!is_dir($dir)){
-			if (!mkdir($dir, 0777, True))
+			if (!mkdir($dir, 0775, True))
 				return False;
 		}		
 
